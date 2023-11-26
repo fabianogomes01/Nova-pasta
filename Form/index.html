@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>PhoneClub - conta</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="/Home/img/PhoneClub.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Bliblioteca de icones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <!-- Fire base-->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+        <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Sua configuração do Firebase aqui...
+    const firebaseConfig = {
+        apiKey: "AIzaSyCXy2GgiSXo9-0nCj-3_z4JaEtjaEKRvsA",
+        authDomain: "phoneclub-c08b5.firebaseapp.com",
+        projectId: "phoneclub-c08b5",
+        storageBucket: "phoneclub-c08b5.appspot.com",
+        messagingSenderId: "964033727300",
+        appId: "1:964033727300:web:ec55431e63d47de7a5a511"
+    };
+
+    // Inicialize o Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Referência para o banco de dados
+    const database = firebase.database();
+    
+    // Seu restante do código aqui...
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Obtenha os valores do formulário
+        const nomeCompleto = document.getElementById('nomeCompleto').value;
+        const email = document.getElementById('email').value;
+        const telefone = document.getElementById('telefone').value;
+        const planoTipo = document.getElementById('planoTipo').value;
+        const nivelPlano = document.getElementById('nivelPlano').value;
+
+        // Enviar dados para o Firebase
+        database.ref('usuarios').push({
+            nomeCompleto,
+            email,
+            telefone,
+            planoTipo,
+            nivelPlano
+        })
+        .then(() => {
+            // Limpar o formulário após o envio
+            form.reset();
+
+            // Exibir animação de confirmação (substitua isso com sua própria lógica)
+            alert('Formulário enviado com sucesso!');
+
+            // Você também pode adicionar uma animação visual aqui
+        })
+        .catch(error => {
+            console.error('Erro ao enviar dados para o Firebase:', error);
+        });
+    });
+});
+
+        </script>
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-lg-5">
+            <a class="navbar-brand" href="#!">PhoneClub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/index.html">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+        <!-- Header-->
+        <header class="bg-dark">
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="text-center my-5">
+                            <h1 class="display-5 fw-bolder text-white mb-2">Junte-se a nossa</h1>
+                            <h1 class="display-5 fw-bolder text-warning mb-2">Comunidade</h1>
+                            <p class="lead text-white-50 mb-4">Preencha o formulário para que possamos entrar em contato com você.</p>
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    <br><br><br>
+
+<!-- Formulário -->
+<div class="container-md">
+    <form>
+        <div class="form-group">
+            <label for="nomeCompleto">Nome Completo</label>
+            <input type="text" class="form-control" id="nomeCompleto" placeholder="Digite seu nome completo" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="telefone">Número de Telefone (DDD + Número)</label>
+            <input type="tel" class="form-control" id="telefone" placeholder="Digite seu número de telefone" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="planoTipo">Tipo de Plano</label>
+            <select class="form-control" id="planoTipo" required>
+                <option value="individual">Plano Individual</option>
+                <option value="corporativo">Plano Corporativo</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="nivelPlano">Nível do Plano</label>
+            <select class="form-control" id="nivelPlano" required>
+                <option value="bronze">Bronze</option>
+                <option value="prata">Prata</option>
+                <option value="ouro">Ouro</option>
+                <option value="ouro">Ouro Pro</option>
+                <option value="ouro">Ouro Pro max</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="politicaPrivacidade" required>
+            <label class="form-check-label" for="politicaPrivacidade">
+                Li e estou de acordo com a <a href="seu_link_da_politica_de_privacidade">Política de Privacidade</a>
+            </label>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-warning">Enviar</button>
+    </form>
+</div>
+
+<br><br>
+
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">&copy; 2023 PhoneClub</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
+
+
+
+
+
+
+
+<!-- Envio de dados -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('form');
+  
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+  
+        // Obtenha os valores do formulário
+        const nomeCompleto = document.getElementById('nomeCompleto').value;
+        const email = document.getElementById('email').value;
+        const telefone = document.getElementById('telefone').value;
+        const planoTipo = document.getElementById('planoTipo').value;
+        const nivelPlano = document.getElementById('nivelPlano').value;
+  
+        // Enviar dados para o Firebase
+        database.ref('usuarios').push({
+          nomeCompleto,
+          email,
+          telefone,
+          planoTipo,
+          nivelPlano
+        })
+        .then(() => {
+          // Limpar o formulário após o envio
+          form.reset();
+  
+          // Exibir animação de confirmação (substitua isso com sua própria lógica)
+          alert('Formulário enviado com sucesso!');
+  
+          // Você também pode adicionar uma animação visual aqui
+        })
+        .catch(error => {
+          console.error('Erro ao enviar dados para o Firebase:', error);
+        });
+      });
+    });
+  </script>
+   
+</body>
+</html>
