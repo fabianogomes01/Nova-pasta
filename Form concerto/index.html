@@ -47,16 +47,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const nomeCompleto = document.getElementById('nomeCompleto').value;
         const email = document.getElementById('email').value;
         const telefone = document.getElementById('telefone').value;
-        const planoTipo = document.getElementById('planoTipo').value;
-        const nivelPlano = document.getElementById('nivelPlano').value;
+        const marcaCelular = document.getElementById('marcaCelular').value;
+        const selecionarServico = document.getElementById('selecionarServico').value;
 
         // Enviar dados para o Firebase
-        database.ref('usuarios').push({
+        database.ref('manutencao').push({
             nomeCompleto,
             email,
             telefone,
-            planoTipo,
-            nivelPlano
+            marcaCelular,
+            selecionarServico
         })
         .then(() => {
             // Limpar o formulário após o envio
@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-5">
                         <div class="text-center my-5">
-                            <h1 class="display-5 fw-bolder text-white mb-2">Junte-se a nossa</h1>
-                            <h1 class="display-5 fw-bolder text-warning mb-2">Comunidade</h1>
+                            <h1 class="display-5 fw-bolder text-white mb-2">Conserto e </h1>
+                            <h1 class="display-5 fw-bolder text-warning mb-2">substituição</h1>
                             <p class="lead text-white-50 mb-4">Preencha o formulário para que possamos entrar em contato com você.</p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                             </div>
@@ -125,23 +125,25 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         <br>
         <div class="form-group">
-            <label for="planoTipo">Tipo de Plano</label>
-            <select class="form-control" id="planoTipo" required>
-                <option value="individual">Plano Individual</option>
-                <option value="corporativo">Plano Corporativo</option>
+            <label for="marcaCelular">Marca de Celular</label>
+            <select class="form-control" id="marcaCelular" required>
+                <option value="Apple">Apple</option>
+                <option value="Xiaomi">Xiaomi</option>
+                <option value="Samsung">Samsung</option>
             </select>
-        </div>
-        <br>
+        </div>        
+        <br>        
         <div class="form-group">
-            <label for="nivelPlano">Nível do Plano</label>
-            <select class="form-control" id="nivelPlano" required>
-                <option value="bronze">Bronze</option>
-                <option value="prata">Prata</option>
-                <option value="ouro">Ouro</option>
-                <option value="ouro">Ouro Pro</option>
-                <option value="ouro">Ouro Pro max</option>
+            <label for="selecionarServico">Selecionar Serviço</label>
+            <select class="form-control" id="selecionarServico" required>
+                <option value="Diagnóstico e Solução de Problemas">Diagnóstico e Solução de Problemas</option>
+                <option value="Troca de Tela">Troca de Tela</option>
+                <option value="Substituição de Bateria">Substituição de Bateria</option>
+                <option value="Recuperação de Água">Recuperação de Água</option>
+                <option value="Reparo de Botões">Reparo de Botões</option>
+                <option value="Recuperação de Dados">Recuperação de Dados</option>
             </select>
-        </div>
+        </div> 
         <br>
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="politicaPrivacidade" required>
@@ -184,16 +186,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const nomeCompleto = document.getElementById('nomeCompleto').value;
         const email = document.getElementById('email').value;
         const telefone = document.getElementById('telefone').value;
-        const planoTipo = document.getElementById('planoTipo').value;
-        const nivelPlano = document.getElementById('nivelPlano').value;
-  
+        const marcaCelular = document.getElementById('marcaCelular').value;
+        const selecionarServico = document.getElementById('selecionarServico').value;
+
         // Enviar dados para o Firebase
-        database.ref('usuarios').push({
-          nomeCompleto,
-          email,
-          telefone,
-          planoTipo,
-          nivelPlano
+        database.ref('manutencao').push({
+            nomeCompleto,
+            email,
+            telefone,
+            marcaCelular,
+            selecionarServico
         })
         .then(() => {
           // Limpar o formulário após o envio
