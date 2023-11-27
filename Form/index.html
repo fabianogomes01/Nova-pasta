@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>PhoneClub - Fomrulário</title>
+    <title>PhoneClub - Formulário</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="/Home/img/PhoneClub.ico" />
     <!-- Bootstrap icons-->
@@ -15,6 +15,8 @@
     <!-- Bliblioteca de icones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 
         <!-- Fire base-->
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -146,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="politicaPrivacidade" required>
             <label class="form-check-label" for="politicaPrivacidade">
-                Li e estou de acordo com a <a href="seu_link_da_politica_de_privacidade">Política de Privacidade</a>
+                Li e estou de acordo com a <a href="/Política de Privacidade/index.html">Política de Privacidade</a>
             </label>
         </div>
         <br>
@@ -172,44 +174,67 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-<!-- Envio de dados -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.querySelector('form');
-  
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-  
-        // Obtenha os valores do formulário
-        const nomeCompleto = document.getElementById('nomeCompleto').value;
-        const email = document.getElementById('email').value;
-        const telefone = document.getElementById('telefone').value;
-        const planoTipo = document.getElementById('planoTipo').value;
-        const nivelPlano = document.getElementById('nivelPlano').value;
-  
-        // Enviar dados para o Firebase
-        database.ref('usuarios').push({
-          nomeCompleto,
-          email,
-          telefone,
-          planoTipo,
-          nivelPlano
-        })
-        .then(() => {
-          // Limpar o formulário após o envio
-          form.reset();
-  
-          // Exibir animação de confirmação (substitua isso com sua própria lógica)
-          alert('Formulário enviado com sucesso! Logo mais entraremos em contato.');
-  
-          // Você também pode adicionar uma animação visual aqui
-        })
-        .catch(error => {
-          console.error('Erro ao enviar dados para o Firebase:', error);
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const form = document.querySelector('form');
+      
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+      
+            // Obtenha os valores do formulário
+            const nomeCompleto = document.getElementById('nomeCompleto').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const planoTipo = document.getElementById('planoTipo').value;
+            const nivelPlano = document.getElementById('nivelPlano').value;
+      
+            // Enviar dados para o Firebase
+            database.ref('usuarios').push({
+              nomeCompleto,
+              email,
+              telefone,
+              planoTipo,
+              nivelPlano
+            })
+            .then(() => {
+              // Limpar o formulário após o envio
+              form.reset();
+      
+              // Exibir animação de confirmação (substitua isso com sua própria lógica)
+              alert('Formulário enviado com sucesso! Logo mais entraremos em contato.');
+      
+              // Enviar e-mail de confirmação
+              enviarEmailConfirmacao(nomeCompleto, email);
+            })
+            .catch(error => {
+              console.error('Erro ao enviar dados para o Firebase:', error);
+            });
+          });
+      
+          function enviarEmailConfirmacao(nomeCompleto, email) {
+            // Configuração do EmailJS
+            emailjs.init("f0rYGti9DPzJHVMRq");
+      
+            // Parâmetros para o template de e-mail
+            const templateParams = {
+              to_name: nomeCompleto,
+              to_email: email,
+              subject: "Bem-vindo à PhoneClub! O maior site de asinaturas de smartphone da América Latina.",
+              message: "Obrigado por se cadastrar. Em breve entraremos em contato."
+            };
+      
+            // Envio do e-mail
+            emailjs.send("service_84rlcyg", "template_che6oo7", templateParams)
+              .then((response) => {
+                console.log('E-mail de confirmação enviado com sucesso:', response);
+              })
+              .catch((error) => {
+                console.error('Erro ao enviar e-mail de confirmação:', error);
+              });
+          }
         });
-      });
-    });
-  </script>
+      </script>
+      
    
 </body>
 </html>
