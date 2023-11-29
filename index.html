@@ -17,6 +17,8 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
+
+
 </head>
 
 
@@ -116,8 +118,11 @@
             // Adicione mais campos conforme necessário
           });
 
+          // Exiba uma mensagem de sucesso
+          alert("Cadastro realizado com sucesso!");
+
           // Redirecione para o link desejado após o cadastro
-          window.location.href = "/Home/index.html";
+          window.location.href = "/loginEcadastro/index2.html";
         })
         .catch((error) => {
           alert("Erro ao cadastrar usuário: " + error.message);
