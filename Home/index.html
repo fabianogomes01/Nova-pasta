@@ -38,15 +38,35 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="/Sobre/index.html">Sobre</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Política de Privacidade/index.html">Política de Privacidade</a></li>
-                <!-- Adicione o botão Logout -->
-                <li class="nav-item">
-                    <button class="nav-link btn btn-link" onclick="logout()">Logout</button>
+                
+                <!-- Adicione o contêiner para o e-mail e o ícone -->
+                <li class="nav-item" id="userEmailContainer">
+                    <!-- O e-mail do usuário e o ícone de usuário serão exibidos aqui -->
                 </li>
+
             </ul>
         </div>
     </div>
 </nav>
+
+<!-- Modal de Logout -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Tem certeza de que deseja fazer logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-warning" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-5">
@@ -266,6 +286,26 @@
                     console.error("Erro ao fazer logout:", error);
                 });
         }
+    </script>
+
+<script>
+    // Verifique se o usuário está autenticado
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // O usuário está autenticado
+            var userEmailContainer = document.getElementById("userEmailContainer");
+            userEmailContainer.innerHTML = `
+                <span class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    ${user.email}
+                    <!-- Adicione o ícone de usuário -->
+                    <i class="bi bi-person"></i>
+                </span>
+            `;
+        } else {
+            // O usuário não está autenticado
+            console.log("Usuário não autenticado");
+        }
+    });
     </script>
         
     </body>
