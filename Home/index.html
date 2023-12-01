@@ -126,7 +126,7 @@
         <!-- Page Content-->
         <section id="page-content" class="pt-4 bg-light border-bottom">
             <div class="text-center my-5">
-                <h1 class="display-5 fw-bolder text-black mb-2">E como funciona a</h1>
+                <h1 class="display-5 fw-bolder text-black mb-2">Como funciona a</h1>
                 <h1 class="display-5 fw-bolder text-warning mb-2">assinatura?</h1>    
                     
                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
@@ -149,9 +149,9 @@
                         <div class="card text-bg-dark border-0 h-100">
                             <div class="card-header display-3 fw-bolder text-warning">2</div>
                             <div class="card-body">
-                              <h5 class="card-title fs-3 fw-bolder">Siga os passo e relalize o pagamento</h5>
+                              <h5 class="card-title fs-3 fw-bolder">Siga os passo e relalize o envio do formulário</h5>
                               <br>
-                              <p class="card-text">Ao realizar o pagamento o aparelho será enviado para o conforto da sua casa.</p>
+                              <p class="card-text">Ao recebermos o formulário entraremos em contato o mais rápido possível.</p>
                             </div>
                         </div>
                     </div>
@@ -276,6 +276,7 @@
             const auth = firebase.auth(); // Inicialize o módulo de autenticação
             const db = firebase.firestore(); // Inicialize o módulo Firestore
           </script>
+          
     <script>
         // Função para realizar o logout
         function logout() {
@@ -291,7 +292,7 @@
         }
     </script>
 
-<script>
+    <script>
     // Verifique se o usuário está autenticado
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {

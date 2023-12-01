@@ -80,7 +80,7 @@
       // Envia o email de recuperação de senha
       auth.sendPasswordResetEmail(email)
         .then(() => {
-          alert("Um email de recuperação foi enviado para o seu endereço.");
+          alert("Um email de recuperação foi enviado para o seu endereço. Verifique a caixa de spam caso não ache o email.");
         })
         .catch((error) => {
           alert("Erro ao enviar email de recuperação: " + error.message);
