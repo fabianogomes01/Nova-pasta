@@ -1,5 +1,7 @@
 # PhoneClub
 
+![preview](./.github/printhome.png)
+
 >Esse é o Phoneclub
 
 Projeto pessoal desenvolvido durante a cadeíra de prática profissional com a ideia de expandir o mercado de smartphones.
