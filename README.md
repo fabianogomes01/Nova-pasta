@@ -1,6 +1,6 @@
 # PhoneClub
 
-![preview](./.github/printhome.png)
+![preview](./printhome.png)
 
 >Esse é o Phoneclub
 
