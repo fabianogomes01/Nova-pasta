@@ -4,7 +4,7 @@
 
 >Esse é o Phoneclub
 
-Projeto pessoal desenvolvido durante a cadeíra de prática profissional com a ideia de expandir o mercado de smartphones.
+Projeto pessoal desenvolvido durante a cadeira de prática profissional com a ideia de expandir o mercado de smartphones.
 
 ## Tecnologias 
 
